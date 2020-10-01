@@ -9,18 +9,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             console.log("IT WORKS!!")
 
         });
-
-
-
-
-
-
-
-
-
-
-
-
+    const showOrHide = () => {
+        let squares = document.querySelectorAll("#")
+    }
 
 
 
