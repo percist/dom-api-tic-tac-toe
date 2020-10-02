@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     statusOfGame = state.statusOfGame;
     for(let i = 0; i < 9; i++){
       if(squareValues[i] !== ""){
+
         const bigOlX = document.createElement("img");
         bigOlX.src = PLAYER_ONE_SYMBOL;
         const bigOlO = document.createElement("img");
@@ -42,8 +43,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
           event.target.appendChild(bigOlO);
           currentPlayerSymbol = "x";
         }
-      }
     }
+
+    }
+        if(statusOfGame !== '') {
+            document.getElementById('game-status').innerHTML = statusOfGame;
+            document.getElementById('new-game').disabled = false;
+        }
   };
 
   function checkBoard() {
@@ -54,12 +60,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
       }
       if(boardIsFull === true) {
-          itsAWin()
+          itsAWin();
       }
     }
 
   let checkStatusOfGame = () =>{
-    //Winning combinations: [[0,3,6}, [1,4,7], [2,5,8], [0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6]]
     for(let i = 0; i < 9; i += 3){
       if(squareValues[i] !== '' && squareValues[i] === squareValues[i+1] && squareValues[i] === squareValues[i+2]){
         itsAWin(squareValues[i]);
