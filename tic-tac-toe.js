@@ -14,22 +14,30 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //Winning combinations: [[0,3,6}, [1,4,7], [2,5,8], [0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6]]
     for(let i = 0; i < 9; i += 3){
       if(squareValues[i] !== '' && squareValues[i] === squareValues[i+1] && squareValues[i] === squareValues[i+2]){
-        itsAWin();
+        itsAWin(squareValues[i]);
         winnerTolken = squareValues[i];
       }
-
-      
+    }
+    for(let i = 0; i < 9; i += 1 ){
       if(squareValues[i] !== '' && squareValues[i] === squareValues[i + 3] && squareValues[i] === squareValues[i + 6]) {
-        itsAWin();
+        itsAWin(squareValues[i]);
         winnerTolken = squareValues[i];
-      } else if(squareValues[i] !=='' && squareValues[i] === squareValues[i + 4] && squareValues[i] === squareValues[i + 8]) {
-        itsAWin();
-        winnerTolken = squareValues[i];
-      } else if(squareValues[i] !== '' && squareValues[i] === squareValues[2] && squareValues[i] === squareValues[4] && squareValues[i] === squareValues[6]){}
-
-
+      }
+    }
+    if(squareValues[0] !=='' && squareValues[0] === squareValues[4] && squareValues[0] === squareValues[8]) {
+        itsAWin(squareValues[0]);
+        winnerTolken = squareValues[0];
+    }
+    if(squareValues[2] !== '' && squareValues[2] === squareValues[4] && squareValues[4] === squareValues[6]){
+        itsAWin(squareValues[2]);
+        winnerTolken = squareValues[2];
     }
   }
+
+  function itsAWin (winner) {
+    statusOfGame = `${winner.toUpperCase()}`
+    console.log(statusOfGame)
+    }
 
   document
     .getElementById("tic-tac-toe-board")
@@ -55,6 +63,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         event.target.appendChild(bigOlO);
         currentPlayerSymbol = "x";
       }
+      checkStatusOfGame()
     });
 
   function occupiedSpace() {
