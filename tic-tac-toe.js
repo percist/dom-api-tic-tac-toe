@@ -4,10 +4,19 @@ const PLAYER_TWO_SYMBOL = "https://assets.aaonline.io/Module-DOM-API/formative-p
 window.addEventListener("DOMContentLoaded", (event) => {
     const currentPlayerSymbol = 'x';
     const squareValues = ['', '', '', '', '', '', '', '', ''];
-    let playerMove =
+    let playerMove;
+
+
 
     document.getElementById("tic-tac-toe-board").addEventListener("click", (event) => {
         const targetEvent = event.target.id;
+        const bigOlX = document.createElement('img');
+        bigOlX.src = PLAYER_ONE_SYMBOL;
+        const bigOlO = document.createElement('img');
+        bigOlO.src = PLAYER_TWO_SYMBOL;
+
+        targetEvent.appendChild(bigOlX)
+        targetEvent.appendChild(bigOlO)
 
         if(!targetEvent.startsWith('square-')) {
             return;
@@ -18,7 +27,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     });
     const occupiedSpace = () => {
-
+        if(squareValues[playerMove] === ''){
+            squareValues[playerMove] = currentPlayerSymbol;
+        }
     }
 
 
