@@ -47,8 +47,29 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
 
   }
+    document.getElementById("new-game").addEventListener("click", event => {
+        currentPlayerSymbol = 'x';
+        statusOfGame = ''
+        document.getElementById('game-status').innerHTML = statusOfGame;
+        squareValues = ["", "", "", "", "", "", "", "", ""];
+        for(let i = 0; i<9; i++) {
+            document.getElementById(`square-${i}`).innerHTML = ''
+        }
+        document.getElementById("new-game").setAttribute('disabled', 'true')
+    })
 
-  function itsAWin (winner) {
+    document.getElementById("give-up").addEventListener("click", event => {
+        currentPlayerSymbol = 'x';
+        statusOfGame = ''
+        document.getElementById('game-status').innerHTML = statusOfGame;
+        squareValues = ["", "", "", "", "", "", "", "", ""];
+        for(let i = 0; i<9; i++) {
+            document.getElementById(`square-${i}`).innerHTML = ''
+        }
+
+    })
+
+    function itsAWin (winner) {
 
       if(boardIsFull === true) {
           statusOfGame = "It's a Tie"
@@ -58,14 +79,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("game-status").innerHTML = statusOfGame;
 
     document.getElementById("new-game").removeAttribute("disabled");
-
-    document.getElementById("new-game").addEventListener("click", event => {
-      currentPlayerSymbol = 'x';
-      squareValues = ["", "", "", "", "", "", "", "", ""];
-      statusOfGame = "";
-      document.getElementById("new-game").removeAttribute("disabled");
-
-    });
 
     }
 
