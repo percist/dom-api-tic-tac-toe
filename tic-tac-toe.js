@@ -45,15 +45,27 @@ window.addEventListener("DOMContentLoaded", (event) => {
         itsAWin(squareValues[2]);
         winnerTolken = squareValues[2];
     }
+
   }
 
   function itsAWin (winner) {
+
       if(boardIsFull === true) {
           statusOfGame = "It's a Tie"
       } else {
     statusOfGame = `Winner is ${winner.toUpperCase()}`
       }
     document.getElementById("game-status").innerHTML = statusOfGame;
+
+    document.getElementById("new-game").removeAttribute("disabled");
+
+    document.getElementById("new-game").addEventListener("click", event => {
+      currentPlayerSymbol = 'x';
+      squareValues = ["", "", "", "", "", "", "", "", ""];
+      statusOfGame = "";
+      document.getElementById("new-game").removeAttribute("disabled");
+
+    });
 
     }
 
@@ -86,7 +98,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
       checkStatusOfGame()
       checkBoard();
+
+
     });
+
+
+  document.getElementById("")
 
   function occupiedSpace() {
     if (squareValues[playerMove] === "") {
