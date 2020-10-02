@@ -10,6 +10,41 @@ window.addEventListener("DOMContentLoaded", (event) => {
   let statusOfGame = "";
   let winnerTolken= '';
   let boardIsFull = false;
+  const key = "tic-tac-toe-game-state"
+  function saveGameState () {
+    const state = {
+      currentPlayerSymbol,
+      squareValues,
+      statusOfGame
+    }
+    window.localStorage.setItem(key, JSON.stringify(state));
+  };
+  function loadGameState () {
+    const savedState = window.localStorage.getItem(key);
+    if (savedState === null){
+      return
+    }
+    const state = JSON.parse(savedState)
+    currentPlayerSymbol = state.currentPlayerSymbol;
+    squareValues = state.squareValues;
+    statusOfGame = state.statusOfGame;
+    for(let i = 0; i < 9; i++){
+      if(squareValues[i] !== ""){
+        const bigOlX = document.createElement("img");
+        bigOlX.src = PLAYER_ONE_SYMBOL;
+        const bigOlO = document.createElement("img");
+        bigOlO.src = PLAYER_TWO_SYMBOL;
+
+        if (squareValues[i] == "x") {
+          event.target.appendChild(bigOlX);
+          currentPlayerSymbol = "o";
+        } else {
+          event.target.appendChild(bigOlO);
+          currentPlayerSymbol = "x";
+        }
+      }
+    }
+  };
 
   function checkBoard() {
       boardIsFull = true;
@@ -114,6 +149,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
     });
+
 
 
   document.getElementById("")
