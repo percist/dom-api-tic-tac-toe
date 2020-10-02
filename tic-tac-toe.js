@@ -9,6 +9,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
   let playerMove;
   let statusOfGame = "";
   let winnerTolken= '';
+  let boardIsFull = false;
+
+  function checkBoard() {
+      boardIsFull = true;
+    for(let i = 0; i <squareValues.length; i++) {
+        if(squareValues[i] === '') {
+            boardIsFull = false
+        }
+      }
+      if(boardIsFull === true) {
+          itsAWin()
+      }
+    }
 
   let checkStatusOfGame = () =>{
     //Winning combinations: [[0,3,6}, [1,4,7], [2,5,8], [0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6]]
@@ -35,13 +48,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   function itsAWin (winner) {
-    statusOfGame = `${winner.toUpperCase()}`
-    console.log(statusOfGame)
+      if(boardIsFull === true) {
+          statusOfGame = "It's a Tie"
+      } else {
+    statusOfGame = `Winner is ${winner.toUpperCase()}`
+      }
+    document.getElementById("game-status").innerHTML = statusOfGame;
+
     }
 
   document
     .getElementById("tic-tac-toe-board")
     .addEventListener("click", (event) => {
+        if(statusOfGame !== '') {
+            return;
+        }
       const targetEvent = event.target.id;
 
       if (!targetEvent.startsWith("square-")) {
@@ -64,6 +85,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         currentPlayerSymbol = "x";
       }
       checkStatusOfGame()
+      checkBoard();
     });
 
   function occupiedSpace() {
